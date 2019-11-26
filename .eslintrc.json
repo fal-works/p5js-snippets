@@ -46,6 +46,7 @@
         "curveVertex": "readonly",
         "random": "readonly",
         "sq": "readonly",
+        "createVector": "readonly",
         "noise": "readonly",
         "push": "readonly",
         "pop": "readonly",
@@ -58,10 +59,14 @@
         "pixels": "writable",
         "loadPixels": "readonly",
         "updatePixels": "readonly",
+        "key": "readonly",
+        "keyCode": "readonly",
         "CENTER": "readonly",
         "LEFT": "readonly",
         "HSB": "readonly",
-        "TWO_PI": "readonly"
+        "TWO_PI": "readonly",
+        "HALF_PI": "readonly",
+        "QUARTER_PI": "readonly"
       },
       "parserOptions": {
         "sourceType": "script"
