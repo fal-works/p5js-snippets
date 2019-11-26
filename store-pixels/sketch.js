@@ -1,8 +1,8 @@
 // ---- definition ------------------------------------------------------------
 
 /**
- * Stores the canvas pixels and returns a function that restores them.
- * @return A function that restores the canvas pixels.
+ * Stores the current canvas pixels and returns a function that restores them.
+ * @returns A function that restores the canvas pixels.
  */
 const storePixels = () => {
   loadPixels();
@@ -15,10 +15,6 @@ const storePixels = () => {
 };
 
 // ---- example ---------------------------------------------------------------
-
-// -- functions ----
-
-// -- main ----
 
 let restorePixels;
 
