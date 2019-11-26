@@ -1,0 +1,67 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:prettier/recommended"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 2015
+  },
+  "overrides": [
+    {
+      "files": ["./**/*.js"],
+      "globals": {
+        "p5": "readonly",
+        "createCanvas": "readonly",
+        "image": "readonly",
+        "frameCount": "readonly",
+        "frameRate": "readonly",
+        "width": "readonly",
+        "height": "readonly",
+        "color": "readonly",
+        "lerpColor": "readonly",
+        "colorMode": "readonly",
+        "background": "readonly",
+        "stroke": "readonly",
+        "fill": "readonly",
+        "noStroke": "readonly",
+        "noFill": "readonly",
+        "red": "readonly",
+        "green": "readonly",
+        "blue": "readonly",
+        "alpha": "readonly",
+        "strokeWeight": "readonly",
+        "circle": "readonly",
+        "ellipse": "readonly",
+        "line": "readonly",
+        "beginShape": "readonly",
+        "endShape": "readonly",
+        "curveVertex": "readonly",
+        "random": "readonly",
+        "sq": "readonly",
+        "noise": "readonly",
+        "push": "readonly",
+        "pop": "readonly",
+        "translate": "readonly",
+        "rotate": "readonly",
+        "scale": "readonly",
+        "text": "readonly",
+        "textAlign": "readonly",
+        "createGraphics": "readonly",
+        "CENTER": "readonly",
+        "LEFT": "readonly",
+        "HSB": "readonly",
+        "TWO_PI": "readonly"
+      },
+      "parserOptions": {
+        "sourceType": "script"
+      },
+      "rules": {
+        "no-unused-vars": "off"
+      }
+    }
+  ]
+}
