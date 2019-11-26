@@ -106,16 +106,17 @@ const detectMoveKeysReleased = () => {
 
 // ---- example ---------------------------------------------------------------
 
-// -- main ----
+// -- variables & functions ----
 
 let myPosition;
 const speed = 5;
 
-const moveMe = directionVector =>
-  myPosition.add(directionVector.copy().mult(speed));
+const moveMe = velocity => myPosition.add(velocity);
 
 const drawMe = () =>
   circle(myPosition.x, myPosition.y, 100 + 20 * Math.sin(frameCount * 0.1));
+
+// -- main ----
 
 function setup() {
   createCanvas(640, 480);
@@ -130,7 +131,9 @@ function setup() {
 function draw() {
   background(248);
 
-  moveMe(moveDirectionVector);
+  const velocity = moveDirectionVector.copy().mult(speed);
+  moveMe(velocity);
+
   drawMe();
 }
 
