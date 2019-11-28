@@ -1,7 +1,7 @@
 // ---- definition ------------------------------------------------------------
 
 /**
- * Similar as p5 `curveVertex()` but takes a vector as argument.
+ * similar to p5 `curveVertex()` but takes a vector as argument.
  * @param vector - Coordinates of the vertex. `vector.z` is optional (for WebGL mode).
  */
 const curveVertexFromVector = vector =>
