@@ -214,42 +214,44 @@ const addData = block => {
 const dataBlocks = [];
 
 const prepareDataBlocks = () => {
+  const pow5 = x => Math.pow(x, 5);
+
   const parameterList = [
     {
-      name: "Random.ratio()",
+      name: "ratio()",
       randomFunction: () => Random.ratio(1)
     },
     {
-      name: "Random.between(-1, 1)",
+      name: "between(-1, 1)",
       randomFunction: () => Random.between(-1, 1)
     },
     {
-      name: "Random.integer(3)",
+      name: "integer(3)",
       randomFunction: () => Random.integer(3)
     },
     {
-      name: "Random.integerBetween(-1, 2)",
+      name: "integerBetween(-1, 2)",
       randomFunction: () => Random.integerBetween(-1, 2)
     },
     {
-      name: "Random.signed(1)",
-      randomFunction: () => Random.signed(1)
+      name: "signed(0.5)",
+      randomFunction: () => Random.signed(0.5)
     },
     {
-      name: "Random.fromAbsolute(2)",
+      name: "fromAbsolute(2)",
       randomFunction: () => Random.fromAbsolute(2)
     },
     {
-      name: "Random.ratioCurved(sq)",
-      randomFunction: () => Random.ratioCurved(sq)
+      name: "ratioCurved(pow5)",
+      randomFunction: () => Random.ratioCurved(pow5)
     },
     {
-      name: "Random.valueCurved(sq, 2)",
-      randomFunction: () => Random.valueCurved(sq, 2)
+      name: "valueCurved(pow5, 2)",
+      randomFunction: () => Random.valueCurved(pow5, 2)
     },
     {
-      name: "Random.betweenCurved(sq,-1,1)",
-      randomFunction: () => Random.betweenCurved(sq, -1, 1)
+      name: "betweenCurved(pow5, -2, 2)",
+      randomFunction: () => Random.betweenCurved(pow5, -2, 2)
     }
   ];
 
