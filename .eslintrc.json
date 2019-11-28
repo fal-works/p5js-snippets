@@ -54,7 +54,9 @@
         "CENTER": "readonly",
         "LEFT": "readonly",
         "HSB": "readonly",
-        "TWO_PI": "readonly"
+        "TWO_PI": "readonly",
+        "HALF_PI": "readonly",
+        "QUARTER_PI": "readonly"
       },
       "parserOptions": {
         "sourceType": "script"
