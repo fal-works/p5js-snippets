@@ -122,6 +122,8 @@ const Random = createRandomFunctions();
 
 const numberLineLength = 0.6 * 640;
 const numberLineScale = numberLineLength / 4;
+const dataPointLivingDuration = 90;
+const dataPointLifeChangeRate = 1 / dataPointLivingDuration;
 
 // -- function for drawing number line ----
 
@@ -159,7 +161,7 @@ const drawDataPoint = dataPoint => {
   const size = life * 15;
   circle(x, 0, size);
 
-  dataPoint.life -= 0.02;
+  dataPoint.life -= dataPointLifeChangeRate;
   return dataPoint.life > 0; // true if alive
 };
 
