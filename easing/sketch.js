@@ -1,5 +1,8 @@
 // ---- definition ------------------------------------------------------------
 
+/**
+ * Collection of easing functions.
+ */
 const Ease = (() => {
   // -- common math functions ----
 
@@ -10,34 +13,24 @@ const Ease = (() => {
 
   // -- functions for generating composite easing functions ----
 
-  const concatenate = (
-    easingFunctionA,
-    easingFunctionB,
-    thresholdRatio = 0.5
-  ) => {
+  const concatenate = (easingA, easingB, thresholdRatio = 0.5) => {
     return ratio => {
-      if (ratio < thresholdRatio)
-        return easingFunctionA(ratio / thresholdRatio);
+      if (ratio < thresholdRatio) return easingA(ratio / thresholdRatio);
       else {
         const ratioB = 1 - thresholdRatio;
-        return easingFunctionB((ratio - thresholdRatio) / ratioB);
+        return easingB((ratio - thresholdRatio) / ratioB);
       }
     };
   };
 
-  const integrate = (
-    easingFunctionA,
-    easingFunctionB,
-    thresholdRatio = 0.5
-  ) => {
+  const integrate = (easingA, easingB, thresholdRatio = 0.5) => {
     return ratio => {
       if (ratio < thresholdRatio)
-        return thresholdRatio * easingFunctionA(ratio / thresholdRatio);
+        return thresholdRatio * easingA(ratio / thresholdRatio);
       else {
         const ratioB = 1 - thresholdRatio;
         return (
-          thresholdRatio +
-          ratioB * easingFunctionB((ratio - thresholdRatio) / ratioB)
+          thresholdRatio + ratioB * easingB((ratio - thresholdRatio) / ratioB)
         );
       }
     };
@@ -204,10 +197,29 @@ const Ease = (() => {
 
   return {
     /**
+     * Linear easing function.
+     * @param ratio
+     * @returns Same value as `ratio`.
+     */
+    linear: ratio => ratio,
+
+    /** Collection of "easeIn" functions. */
+    In,
+
+    /** Collection of "easeOut" functions. */
+    Out,
+
+    /** Collection of "easeInOut" functions. */
+    InOut,
+
+    /** Collection of "easeOutIn" functions. */
+    OutIn,
+
+    /**
      * Concatenates two easing functions without normalization.
-     * @param easingFunctionA
-     * @param easingFunctionB
-     * @param thresholdRatio
+     * @param easingA - Any easing function.
+     * @param easingB - Any easing function.
+     * @param thresholdRatio - Defaults to `0.5`.
      * @return New easing function.
      */
     concatenate,
@@ -215,39 +227,12 @@ const Ease = (() => {
     /**
      * Integrates two easing functions.
      * Results of both functions will be normalized depending on `thresholdRatio`.
-     * @param easingFunctionA
-     * @param easingFunctionB
-     * @param thresholdRatio
+     * @param easingA - Any easing function.
+     * @param easingB - Any easing function.
+     * @param thresholdRatio - Defaults to `0.5`.
      * @return New easing function.
      */
-    integrate,
-
-    /**
-     * Linear easing function.
-     * @param ratio
-     * @returns Same value as `ratio`.
-     */
-    linear: ratio => ratio,
-
-    /**
-     * Collection of "easeIn" functions.
-     */
-    In,
-
-    /**
-     * Collection of "easeOut" functions.
-     */
-    Out,
-
-    /**
-     * Collection of "easeInOut" functions.
-     */
-    InOut,
-
-    /**
-     * Collection of "easeOutIn" functions.
-     */
-    OutIn
+    integrate
   };
 })();
 
