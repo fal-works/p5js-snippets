@@ -24,6 +24,7 @@
         "color": "readonly",
         "lerpColor": "readonly",
         "colorMode": "readonly",
+        "blendMode": "readonly",
         "background": "readonly",
         "stroke": "readonly",
         "fill": "readonly",
@@ -53,10 +54,20 @@
         "createGraphics": "readonly",
         "CENTER": "readonly",
         "LEFT": "readonly",
+        "RIGHT": "readonly",
+        "RGB": "readonly",
         "HSB": "readonly",
+        "BLEND": "readonly",
+        "ADD": "readonly",
+        "DIFFERENCE": "readonly",
+        "MULTIPLY": "readonly",
+        "PI": "readonly",
         "TWO_PI": "readonly",
         "HALF_PI": "readonly",
-        "QUARTER_PI": "readonly"
+        "QUARTER_PI": "readonly",
+        "TAU": "readonly",
+        "DEGREES": "readonly",
+        "RADIANS": "readonly"
       },
       "parserOptions": {
         "sourceType": "script"
