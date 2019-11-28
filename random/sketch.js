@@ -259,17 +259,17 @@ const prepareDataBlocks = () => {
   dataBlocks.push(...parameterList.map(createDataBlock));
 };
 
-function setup() {
+setup = () => {
   createCanvas(640, 480);
   background(252);
   textAlign(CENTER);
 
   prepareDataBlocks();
-}
+};
 
-function draw() {
+draw = () => {
   background(248);
 
   if (frameCount % 5 === 0) dataBlocks.forEach(addData);
   dataBlocks.forEach(drawDataBlock);
-}
+};

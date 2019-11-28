@@ -15,6 +15,8 @@
       "files": ["./**/*.js"],
       "globals": {
         "p5": "readonly",
+        "setup": "writable",
+        "draw": "writable",
         "createCanvas": "readonly",
         "image": "readonly",
         "frameCount": "readonly",

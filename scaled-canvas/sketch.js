@@ -59,11 +59,11 @@ const drawInLogicalSize = () => {
   circle(width / 2, height / 2, circleSize);
 };
 
-function setup() {
+setup = () => {
   scaledCanvas = createScaledCanvas({ width: 640, height: 480 });
-}
+};
 
-function draw() {
+draw = () => {
   background(240);
   scaledCanvas.drawScaled(drawInLogicalSize);
-}
+};
