@@ -305,6 +305,13 @@ const drawName = name => {
   text(name, -5, 25);
 };
 
+const drawGraphBlock = (name, easing) => {
+  drawName(name);
+  drawGraph(easing);
+  const progressRatio = (frameCount % intervalFrameCount) / intervalFrameCount;
+  drawEasedPoint(easing, progressRatio);
+};
+
 const createDrawGraphBlock = (parameters, row, column) => {
   const { name, easing } = parameters;
   const x = graphIntervalX * (column + 0.35);
@@ -313,11 +320,7 @@ const createDrawGraphBlock = (parameters, row, column) => {
   return () => {
     push();
     translate(x, y);
-    drawName(name);
-    drawGraph(easing);
-    const progressRatio =
-      (frameCount % intervalFrameCount) / intervalFrameCount;
-    drawEasedPoint(easing, progressRatio);
+    drawGraphBlock(name, easing);
     pop();
   };
 };
