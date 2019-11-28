@@ -50,10 +50,13 @@ const createScaledCanvas = (logicalSize, htmlElement = document.body) => {
 let scaledCanvas;
 
 const drawInLogicalSize = () => {
-  const x = scaledCanvas.logicalSize.width / 2;
-  const y = scaledCanvas.logicalSize.height / 2;
+  const {
+    logicalSize: { width, height }
+  } = scaledCanvas;
+
   const circleSize = 300;
-  circle(x, y, circleSize);
+
+  circle(width / 2, height / 2, circleSize);
 };
 
 function setup() {
