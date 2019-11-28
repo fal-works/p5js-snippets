@@ -220,7 +220,7 @@ const Ease = (() => {
      * @param easingA - Any easing function.
      * @param easingB - Any easing function.
      * @param thresholdRatio - Defaults to `0.5`.
-     * @return New easing function.
+     * @returns New easing function.
      */
     concatenate,
 
@@ -230,7 +230,7 @@ const Ease = (() => {
      * @param easingA - Any easing function.
      * @param easingB - Any easing function.
      * @param thresholdRatio - Defaults to `0.5`.
-     * @return New easing function.
+     * @returns New easing function.
      */
     integrate
   };

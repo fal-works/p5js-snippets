@@ -11,14 +11,14 @@ const createRandomFunctions = (random = Math.random) => {
   return {
     /**
      * Returns a random value from `0` to (but not including) `1`.
-     * @return A random ratio.
+     * @returns A random ratio.
      */
     ratio: random,
 
     /**
      * Returns a random value from `0` to (but not including) `value`.
      * @param max
-     * @return A random value.
+     * @returns A random value.
      */
     value: max => random() * max,
 
@@ -27,13 +27,13 @@ const createRandomFunctions = (random = Math.random) => {
      * The case where `min > max` is not expected.
      * @param min
      * @param max
-     * @return A random integer value.
+     * @returns A random integer value.
      */
     between: (min, max) => min + random() * (max - min),
 
     /**
      * Returns a random value from `0` to (but not including) `2 * PI`.
-     * @return A random radians value.
+     * @returns A random radians value.
      */
     angle: () => random() * TWO_PI,
 
@@ -41,7 +41,7 @@ const createRandomFunctions = (random = Math.random) => {
      * Returns a random integer from 0 up to (but not including) `maxInt`.
      * `maxInt` is not expected to be negative.
      * @param maxInt
-     * @return A random integer value.
+     * @returns A random integer value.
      */
     integer: maxInt => floor(random() * maxInt),
 
@@ -50,7 +50,7 @@ const createRandomFunctions = (random = Math.random) => {
      * The case where `minInt > maxInt` is not expected.
      * @param minInt
      * @param maxInt
-     * @return A random integer value.
+     * @returns A random integer value.
      */
     integerBetween: (minInt, maxInt) =>
       minInt + floor(random() * (maxInt - minInt)),
@@ -58,7 +58,7 @@ const createRandomFunctions = (random = Math.random) => {
     /**
      * Returns `n` or `-n` randomly.
      * @param n Any number.
-     * @return A random-signed value of `n`.
+     * @returns A random-signed value of `n`.
      */
     signed: n => (random() < 0.5 ? n : -n),
 
@@ -66,7 +66,7 @@ const createRandomFunctions = (random = Math.random) => {
      * Removes and returns one element from `array` randomly.
      * `array` is not expected to be empty.
      * @param array
-     * @return A random element.
+     * @returns A random element.
      */
     removeFromArray: array =>
       array.splice(floor(random() * array.length), 1)[0],
@@ -74,14 +74,14 @@ const createRandomFunctions = (random = Math.random) => {
     /**
      * Returns `true` or `false` randomly.
      * @param probability A number between 0 and 1.
-     * @return `true` with the given `probability`.
+     * @returns `true` with the given `probability`.
      */
     bool: probability => random() < probability,
 
     /**
      * Returns a random value from `-absoluteValue` up to (but not including) `absoluteValue`.
      * @param absoluteValue
-     * @return A random value.
+     * @returns A random value.
      */
     fromAbsolute: absoluteValue =>
       -absoluteValue + random() * 2 * absoluteValue,
@@ -89,7 +89,7 @@ const createRandomFunctions = (random = Math.random) => {
     /**
      * Similar to `ratio()`, but remaps the result by `curve`.
      * @param curve Any function that takes a random value between [0, 1] and returns a remapped value.
-     * @return A random value.
+     * @returns A random value.
      */
     ratioCurved: curve => curve(random()),
 
@@ -97,7 +97,7 @@ const createRandomFunctions = (random = Math.random) => {
      * Similar to p5 `value()`, but remaps the result by `curve`.
      * @param curve Any function that takes a random value between [0, 1] and returns a remapped value.
      * @param magnitude
-     * @return A random value.
+     * @returns A random value.
      */
     valueCurved: (curve, magnitude) => curve(random()) * magnitude,
 
@@ -107,7 +107,7 @@ const createRandomFunctions = (random = Math.random) => {
      * @param curve Any function that takes a random value between [0, 1] and returns a remapped value.
      * @param start
      * @param end
-     * @return A random value.
+     * @returns A random value.
      */
     betweenCurved: (curve, start, end) =>
       start + curve(random()) * (end - start)
