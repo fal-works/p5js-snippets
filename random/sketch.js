@@ -154,11 +154,11 @@ const createDataPoint = value => {
 const drawDataPoint = dataPoint => {
   const { life } = dataPoint;
 
-  const alpha = life * 255;
+  const alpha = life * 192;
   fill(192, 0, 64, alpha);
 
   const x = numberLineScale * dataPoint.value;
-  const size = life * 15;
+  const size = life * 18;
   circle(x, 0, size);
 
   dataPoint.life -= dataPointLifeChangeRate;
@@ -189,6 +189,7 @@ const drawName = name => {
 };
 const drawDataPointsOf = block => {
   noStroke();
+  blendMode(MULTIPLY);
   block.dataPoints = block.dataPoints.filter(drawDataPoint);
 };
 const drawDataBlock = block => {
