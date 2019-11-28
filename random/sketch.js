@@ -3,97 +3,87 @@
 const Random = (() => {
   const { random, floor } = Math;
 
-  /**
-   * Returns random value from `0` to (but not including) `2 * PI`.
-   * @return A random radians value.
-   */
-  const angle = () => random() * TWO_PI;
-
-  /**
-   * Returns random integer from 0 up to (but not including) `maxInt`.
-   * `maxInt` is not expected to be negative.
-   * @param maxInt
-   * @return A random integer value.
-   */
-  const integer = maxInt => floor(random() * maxInt);
-
-  /**
-   * Returns random integer from `minInt` up to (but not including) `maxInt`.
-   * The case where `minInt > maxInt` or `maxInt <= 0` is not expected.
-   * @param minInt
-   * @param maxInt
-   * @return A random integer value.
-   */
-  const integerBetween = (minInt, maxInt) =>
-    minInt + floor(random() * (maxInt - minInt));
-
-  /**
-   * Returns `n` or `-n` randomly.
-   * @param n Any number.
-   * @return A random-signed value of `n`.
-   */
-  const signed = n => (random() < 0.5 ? n : -n);
-
-  /**
-   * Removes and returns one element from `array` randomly.
-   * `array` is not expected to be empty.
-   * @param array
-   * @return A random element.
-   */
-  const removeFromArray = array => array.splice(integer(array.length), 1)[0];
-
-  /**
-   * Returns `true` or `false` randomly.
-   * @param probability A number between 0 and 1.
-   * @return `true` with the given `probability`.
-   */
-  const bool = probability => random() < probability;
-
-  /**
-   * Returns random value from `-absoluteValue` up to (but not including) `absoluteValue`.
-   * @param absoluteValue
-   * @return A random value.
-   */
-  const fromAbsolute = absoluteValue =>
-    -absoluteValue + random() * 2 * absoluteValue;
-
-  /**
-   * Similar to `Math.random()`, but remaps the result by `curve`.
-   * @param curve Function that takes a random value between [0, 1] and returns a remapped value.
-   * @return A random value.
-   */
-  const ratioCurved = curve => curve(random());
-
-  /**
-   * Similar to p5 `random()` with 1 number argument, but remaps the result by `curve`.
-   * @param curve Function that takes a random value between [0, 1] and returns a remapped value.
-   * @param magnitude
-   * @return A random value.
-   */
-  const valueCurved = (curve, magnitude) => curve(random()) * magnitude;
-
-  /**
-   * Similar to p5 `random()` with 2 number arguments, but remaps the result by `curve`.
-   * `start` should not be greater than `end`.
-   * @param curve Function that takes a random value between [0, 1] and returns a remapped value.
-   * @param start
-   * @param end
-   * @return A random value.
-   */
-  const betweenCurved = (curve, start, end) =>
-    start + curve(random()) * (end - start);
-
   return {
-    angle,
-    integer,
-    integerBetween,
-    signed,
-    removeFromArray,
-    bool,
-    fromAbsolute,
-    ratioCurved,
-    valueCurved,
-    betweenCurved
+    /**
+     * Returns a random value from `0` to (but not including) `2 * PI`.
+     * @return A random radians value.
+     */
+    angle: () => random() * TWO_PI,
+
+    /**
+     * Returns a random integer from 0 up to (but not including) `maxInt`.
+     * `maxInt` is not expected to be negative.
+     * @param maxInt
+     * @return A random integer value.
+     */
+    integer: maxInt => floor(random() * maxInt),
+
+    /**
+     * Returns a random integer from `minInt` up to (but not including) `maxInt`.
+     * The case where `minInt > maxInt` or `maxInt <= 0` is not expected.
+     * @param minInt
+     * @param maxInt
+     * @return A random integer value.
+     */
+    integerBetween: (minInt, maxInt) =>
+      minInt + floor(random() * (maxInt - minInt)),
+
+    /**
+     * Returns `n` or `-n` randomly.
+     * @param n Any number.
+     * @return A random-signed value of `n`.
+     */
+    signed: n => (random() < 0.5 ? n : -n),
+
+    /**
+     * Removes and returns one element from `array` randomly.
+     * `array` is not expected to be empty.
+     * @param array
+     * @return A random element.
+     */
+    removeFromArray: array =>
+      array.splice(floor(random() * array.length), 1)[0],
+
+    /**
+     * Returns `true` or `false` randomly.
+     * @param probability A number between 0 and 1.
+     * @return `true` with the given `probability`.
+     */
+    bool: probability => random() < probability,
+
+    /**
+     * Returns a random value from `-absoluteValue` up to (but not including) `absoluteValue`.
+     * @param absoluteValue
+     * @return A random value.
+     */
+    fromAbsolute: absoluteValue =>
+      -absoluteValue + random() * 2 * absoluteValue,
+
+    /**
+     * Similar to `Math.random()`, but remaps the result by `curve`.
+     * @param curve Any function that takes a random value between [0, 1] and returns a remapped value.
+     * @return A random value.
+     */
+    ratioCurved: curve => curve(random()),
+
+    /**
+     * Similar to p5 `Math.random() * magnitude`, but remaps the result by `curve`.
+     * @param curve Any function that takes a random value between [0, 1] and returns a remapped value.
+     * @param magnitude
+     * @return A random value.
+     */
+    valueCurved: (curve, magnitude) => curve(random()) * magnitude,
+
+    /**
+     * Similar to p5 `random()` with 2 number arguments, but remaps the result by `curve`.
+     * `start` should not be greater than `end`.
+     * @param curve Any function that takes a random value between [0, 1] and returns a remapped value.
+     * @param start
+     * @param end
+     * @return A random value.
+     */
+    betweenCurved: (curve, start, end) =>
+      start + curve(random()) * (end - start)
   };
 })();
 
