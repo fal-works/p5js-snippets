@@ -3,9 +3,9 @@
 /**
  * Joins two arrays and runs `callback` once for each joined pair.
  * You should not remove elements from arrays during the iteration.
- * @param arrayA
- * @param arrayB
- * @param callback
+ * @param arrayA - Any filled array.
+ * @param arrayB - Any filled array.
+ * @param callback - Any function that takes an element of `arrayA` and an element of `arrayB` as arguments.
  */
 const nestedLoopJoin = (arrayA, arrayB, callback) => {
   for (let i = 0; i < arrayA.length; i += 1) {
@@ -15,8 +15,8 @@ const nestedLoopJoin = (arrayA, arrayB, callback) => {
 
 /**
  * Runs `callback` once for each pair within `array`.
- * @param array
- * @param callback
+ * @param array - Any filled array.
+ * @param callback - Any function that takes two different elements of `arrayA` as arguments.
  */
 const roundRobin = (array, callback) => {
   const lastIndex = array.length - 1;
