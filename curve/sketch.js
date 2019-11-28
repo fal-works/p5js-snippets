@@ -13,11 +13,12 @@ const curveVertexFromVector = vector =>
  */
 const drawCurve = vertices => {
   const { length } = vertices;
-
   beginShape();
+
   curveVertexFromVector(vertices[0]);
-  vertices.forEach(curveVertexFromVector);
+  for (let i = 0; i < length; i += 1) curveVertexFromVector(vertices[i]);
   curveVertexFromVector(vertices[length - 1]);
+
   endShape();
 };
 
@@ -26,9 +27,12 @@ const drawCurve = vertices => {
  * @param vertices
  */
 const drawCurveClosed = vertices => {
+  const { length } = vertices;
   beginShape();
-  vertices.forEach(curveVertexFromVector);
+
+  for (let i = 0; i < length; i += 1) curveVertexFromVector(vertices[i]);
   for (let i = 0; i < 3; i += 1) curveVertexFromVector(vertices[i]);
+
   endShape();
 };
 
