@@ -1,9 +1,36 @@
 // ---- definition ------------------------------------------------------------
 
-const Random = (() => {
-  const { random, floor } = Math;
+/**
+ * Creates a collection of functions that return random values.
+ * @param random - A function that returns a random value from `0` to (but not including) `1`. Defaults fo `Math.random`.
+ * @returns Functions that return random values.
+ */
+const createRandomFunctions = (random = Math.random) => {
+  const { floor } = Math;
 
   return {
+    /**
+     * Returns a random value from `0` to (but not including) `1`.
+     * @return A random ratio.
+     */
+    ratio: random,
+
+    /**
+     * Returns a random value from `0` to (but not including) `value`.
+     * @param max
+     * @return A random value.
+     */
+    value: max => random() * max,
+
+    /**
+     * Returns a random value from `min` up to (but not including) `max`.
+     * The case where `min > max` is not expected.
+     * @param min
+     * @param max
+     * @return A random integer value.
+     */
+    between: (min, max) => min + random() * (max - min),
+
     /**
      * Returns a random value from `0` to (but not including) `2 * PI`.
      * @return A random radians value.
@@ -20,7 +47,7 @@ const Random = (() => {
 
     /**
      * Returns a random integer from `minInt` up to (but not including) `maxInt`.
-     * The case where `minInt > maxInt` or `maxInt <= 0` is not expected.
+     * The case where `minInt > maxInt` is not expected.
      * @param minInt
      * @param maxInt
      * @return A random integer value.
@@ -60,14 +87,14 @@ const Random = (() => {
       -absoluteValue + random() * 2 * absoluteValue,
 
     /**
-     * Similar to `Math.random()`, but remaps the result by `curve`.
+     * Similar to `ratio()`, but remaps the result by `curve`.
      * @param curve Any function that takes a random value between [0, 1] and returns a remapped value.
      * @return A random value.
      */
     ratioCurved: curve => curve(random()),
 
     /**
-     * Similar to p5 `Math.random() * magnitude`, but remaps the result by `curve`.
+     * Similar to p5 `value()`, but remaps the result by `curve`.
      * @param curve Any function that takes a random value between [0, 1] and returns a remapped value.
      * @param magnitude
      * @return A random value.
@@ -75,7 +102,7 @@ const Random = (() => {
     valueCurved: (curve, magnitude) => curve(random()) * magnitude,
 
     /**
-     * Similar to p5 `random()` with 2 number arguments, but remaps the result by `curve`.
+     * Similar to `between()`, but remaps the result by `curve`.
      * `start` should not be greater than `end`.
      * @param curve Any function that takes a random value between [0, 1] and returns a remapped value.
      * @param start
@@ -85,16 +112,18 @@ const Random = (() => {
     betweenCurved: (curve, start, end) =>
       start + curve(random()) * (end - start)
   };
-})();
+};
 
-// ---- Example ---------------------------------------------------------------
+// ---- example ---------------------------------------------------------------
 
-// -- Constants ----
+// -- common ----
+
+const Random = createRandomFunctions();
 
 const numberLineLength = 0.6 * 640;
 const numberLineScale = numberLineLength / 4;
 
-// -- Function for drawing number line ----
+// -- function for drawing number line ----
 
 const numberLineHalfLength = numberLineLength / 2;
 const numberLineValues = [-2, -1, 0, 1, 2];
@@ -112,7 +141,7 @@ const drawNumberLine = () => {
   });
 };
 
-// -- Data point ----
+// -- data point ----
 
 const createDataPoint = value => {
   return {
@@ -134,7 +163,7 @@ const drawDataPoint = dataPoint => {
   return dataPoint.life > 0; // true if alive
 };
 
-// -- Data block ----
+// -- data block ----
 
 const createDataBlock = (parameters, index) => {
   const x = 0.03 * width;
@@ -184,12 +213,12 @@ const dataBlocks = [];
 const prepareDataBlocks = () => {
   const parameterList = [
     {
-      name: "random(1)",
-      randomFunction: () => random(1)
+      name: "Random.ratio()",
+      randomFunction: () => Random.ratio(1)
     },
     {
-      name: "random(-1, 1)",
-      randomFunction: () => random(-1, 1)
+      name: "Random.between(-1, 1)",
+      randomFunction: () => Random.between(-1, 1)
     },
     {
       name: "Random.integer(3)",
