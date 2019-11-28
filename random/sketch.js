@@ -83,7 +83,7 @@ const Random = (() => {
   const betweenCurved = (curve, start, end) =>
     start + curve(random()) * (end - start);
 
-  return Object.freeze({
+  return {
     angle,
     integer,
     integerBetween,
@@ -94,7 +94,7 @@ const Random = (() => {
     ratioCurved,
     valueCurved,
     betweenCurved
-  });
+  };
 })();
 
 // ---- Example ---------------------------------------------------------------

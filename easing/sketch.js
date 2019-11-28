@@ -96,7 +96,7 @@ const Ease = (() => {
       integrate(Out.createBack(coefficient), In.createBack(coefficient))
   };
 
-  return Object.freeze({
+  return {
     concatenate,
     integrate,
     linear,
@@ -104,7 +104,7 @@ const Ease = (() => {
     Out,
     InOut,
     OutIn
-  });
+  };
 })();
 
 // ---- Example ---------------------------------------------------------------
