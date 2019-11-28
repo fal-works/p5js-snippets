@@ -154,7 +154,7 @@ const createDataPoint = value => {
 const drawDataPoint = dataPoint => {
   const { life } = dataPoint;
 
-  const alpha = life * 192;
+  const alpha = life * 176;
   fill(192, 0, 64, alpha);
 
   const x = numberLineScale * dataPoint.value;
@@ -168,9 +168,9 @@ const drawDataPoint = dataPoint => {
 // -- data block ----
 
 const createDataBlock = (parameters, index) => {
-  const x = 0.03 * width;
+  const x = 0.05 * width;
   const y = 30 + index * 50;
-  const xOffset = 0.63 * width;
+  const xOffset = 0.6 * width;
 
   return {
     name: parameters.name,
