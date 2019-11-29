@@ -1,0 +1,97 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:prettier/recommended"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 2015
+  },
+  "overrides": [
+    {
+      "files": ["./**/*.js"],
+      "globals": {
+        "p5": "readonly",
+        "setup": "writable",
+        "draw": "writable",
+        "createCanvas": "readonly",
+        "image": "readonly",
+        "frameCount": "readonly",
+        "frameRate": "readonly",
+        "width": "readonly",
+        "height": "readonly",
+        "color": "readonly",
+        "lerpColor": "readonly",
+        "colorMode": "readonly",
+        "blendMode": "readonly",
+        "background": "readonly",
+        "stroke": "readonly",
+        "fill": "readonly",
+        "noStroke": "readonly",
+        "noFill": "readonly",
+        "red": "readonly",
+        "green": "readonly",
+        "blue": "readonly",
+        "alpha": "readonly",
+        "strokeWeight": "readonly",
+        "arc": "readonly",
+        "circle": "readonly",
+        "ellipse": "readonly",
+        "square": "readonly",
+        "rect": "readonly",
+        "line": "readonly",
+        "ellipseMode": "readonly",
+        "rectMode": "readonly",
+        "beginShape": "readonly",
+        "endShape": "readonly",
+        "vertex": "readonly",
+        "curveVertex": "readonly",
+        "bezierVertex": "readonly",
+        "random": "readonly",
+        "sq": "readonly",
+        "createVector": "readonly",
+        "noise": "readonly",
+        "sin": "readonly",
+        "cos": "readonly",
+        "dist": "readonly",
+        "map": "readonly",
+        "lerp": "readonly",
+        "push": "readonly",
+        "pop": "readonly",
+        "translate": "readonly",
+        "rotate": "readonly",
+        "scale": "readonly",
+        "text": "readonly",
+        "textAlign": "readonly",
+        "createGraphics": "readonly",
+        "pixels": "writable",
+        "loadPixels": "readonly",
+        "updatePixels": "readonly",
+        "key": "readonly",
+        "keyCode": "readonly",
+        "CENTER": "readonly",
+        "LEFT": "readonly",
+        "RIGHT": "readonly",
+        "RGB": "readonly",
+        "HSB": "readonly",
+        "TWO_PI": "readonly",
+        "HALF_PI": "readonly",
+        "QUARTER_PI": "readonly",
+        "BLEND": "readonly",
+        "REPLACE": "readonly",
+        "ADD": "readonly",
+        "DIFFERENCE": "readonly",
+        "MULTIPLY": "readonly"
+      },
+      "parserOptions": {
+        "sourceType": "script"
+      },
+      "rules": {
+        "no-unused-vars": "off"
+      }
+    }
+  ]
+}
