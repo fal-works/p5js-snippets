@@ -5,6 +5,20 @@
 /**
  * Converts a `p5.Color` instance to an object representation.
  * @param p5Color
+ * @returns `{ r, g, b }`
+ */
+const colorToRGB = p5Color => {
+  return {
+    r: red(p5Color),
+    g: green(p5Color),
+    b: blue(p5Color)
+  };
+};
+
+/**
+ * Converts a `p5.Color` instance to an object representation.
+ * @param p5Color
+ * @returns  `{ r, g, b, a }`
  */
 const colorToRGBA = p5Color => {
   return {
@@ -159,7 +173,7 @@ const createRandomTexture = parameters => {
   const { width, height, color, maxAlphaFactor } = parameters;
 
   const maxAlpha = maxAlphaFactor * 255;
-  const { r, g, b } = colorToRGBA(color);
+  const { r, g, b } = colorToRGB(color);
 
   const runSetPixel = (setPixel, x, y) =>
     setPixel(x, y, r, g, b, Math.random() * maxAlpha);
@@ -171,7 +185,7 @@ const createNoiseTexture = parameters => {
   const { width, height, color, maxAlphaFactor, noiseScale } = parameters;
 
   const maxAlpha = maxAlphaFactor * 255;
-  const { r, g, b } = colorToRGBA(color);
+  const { r, g, b } = colorToRGB(color);
 
   const runSetPixel = (setPixel, x, y) =>
     setPixel(x, y, r, g, b, noise(x * noiseScale, y * noiseScale) * maxAlpha);
