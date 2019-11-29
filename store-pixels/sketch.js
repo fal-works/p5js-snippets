@@ -2,15 +2,17 @@
 
 /**
  * Stores the current canvas pixels and returns a function that restores them.
+ * @param renderer - Instance of either p5 or p5.Graphics. Defaults to `window`
+ *   for use in p5.js global mode.
  * @returns A function that restores the canvas pixels.
  */
-const storePixels = () => {
-  loadPixels();
-  const storedPixels = pixels;
+const storePixels = (renderer = window) => {
+  renderer.loadPixels();
+  const storedPixels = renderer.pixels;
 
   return () => {
-    pixels = storedPixels;
-    updatePixels();
+    renderer.pixels = storedPixels;
+    renderer.updatePixels();
   };
 };
 
