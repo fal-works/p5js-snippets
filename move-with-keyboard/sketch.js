@@ -17,13 +17,16 @@ let down = false;
 let right = false;
 
 const initializeMoveKeyStatus = () => {
-  moveDirectionVectorGrid = [[5, 4, 3], [6, undefined, 2], [7, 0, 1]].map(
-    column =>
-      column.map(directionIndex => {
-        if (directionIndex !== undefined)
-          return p5.Vector.fromAngle(directionIndex * (Math.PI / 4));
-        else return createVector();
-      })
+  moveDirectionVectorGrid = [
+    [5, 4, 3],
+    [6, undefined, 2],
+    [7, 0, 1]
+  ].map(column =>
+    column.map(directionIndex => {
+      if (directionIndex !== undefined)
+        return p5.Vector.fromAngle(directionIndex * (Math.PI / 4));
+      else return createVector();
+    })
   );
 
   moveDirectionVector = moveDirectionVectorGrid[1][1];
@@ -118,7 +121,7 @@ const drawMe = () =>
 
 // -- main ----
 
-function setup() {
+setup = () => {
   createCanvas(640, 480);
 
   initializeMoveKeyStatus();
@@ -126,16 +129,16 @@ function setup() {
 
   noStroke();
   fill(64);
-}
+};
 
-function draw() {
+draw = () => {
   background(248);
 
   const velocity = moveDirectionVector.copy().mult(speed);
   moveMe(velocity);
 
   drawMe();
-}
+};
 
 function keyPressed() {
   detectMoveKeysPressed();
