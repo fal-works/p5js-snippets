@@ -1,110 +1,131 @@
 // ---- definition ------------------------------------------------------------
 
-const Random = (() => {
-  const { random, floor } = Math;
+/**
+ * Creates a collection of functions that return random values.
+ * @param random - A function that returns a random value from `0` to (but not including) `1`. Defaults fo `Math.random`.
+ * @returns Functions that return random values.
+ */
+const createRandomFunctions = (random = Math.random) => {
+  const { floor } = Math;
 
-  /**
-   * Returns random value from `0` to (but not including) `2 * PI`.
-   * @return A random radians value.
-   */
-  const angle = () => random() * TWO_PI;
+  return {
+    /**
+     * Returns a random value from `0` to (but not including) `1`.
+     * @returns A random ratio.
+     */
+    ratio: random,
 
-  /**
-   * Returns random integer from 0 up to (but not including) `maxInt`.
-   * `maxInt` is not expected to be negative.
-   * @param maxInt
-   * @return A random integer value.
-   */
-  const integer = maxInt => floor(random() * maxInt);
+    /**
+     * Returns a random value from `0` to (but not including) `value`.
+     * @param max
+     * @returns A random value.
+     */
+    value: max => random() * max,
 
-  /**
-   * Returns random integer from `minInt` up to (but not including) `maxInt`.
-   * The case where `minInt > maxInt` or `maxInt <= 0` is not expected.
-   * @param minInt
-   * @param maxInt
-   * @return A random integer value.
-   */
-  const integerBetween = (minInt, maxInt) =>
-    minInt + floor(random() * (maxInt - minInt));
+    /**
+     * Returns a random value from `min` up to (but not including) `max`.
+     * The case where `min > max` is not expected.
+     * @param min
+     * @param max
+     * @returns A random integer value.
+     */
+    between: (min, max) => min + random() * (max - min),
 
-  /**
-   * Returns `n` or `-n` randomly.
-   * @param n Any number.
-   * @return A random-signed value of `n`.
-   */
-  const signed = n => (random() < 0.5 ? n : -n);
+    /**
+     * Returns a random value from `0` to (but not including) `2 * PI`.
+     * @returns A random radians value.
+     */
+    angle: () => random() * TWO_PI,
 
-  /**
-   * Removes and returns one element from `array` randomly.
-   * `array` is not expected to be empty.
-   * @param array
-   * @return A random element.
-   */
-  const removeFromArray = array => array.splice(integer(array.length), 1)[0];
+    /**
+     * Returns a random integer from 0 up to (but not including) `maxInt`.
+     * `maxInt` is not expected to be negative.
+     * @param maxInt
+     * @returns A random integer value.
+     */
+    integer: maxInt => floor(random() * maxInt),
 
-  /**
-   * Returns `true` or `false` randomly.
-   * @param probability A number between 0 and 1.
-   * @return `true` with the given `probability`.
-   */
-  const bool = probability => random() < probability;
+    /**
+     * Returns a random integer from `minInt` up to (but not including) `maxInt`.
+     * The case where `minInt > maxInt` is not expected.
+     * @param minInt
+     * @param maxInt
+     * @returns A random integer value.
+     */
+    integerBetween: (minInt, maxInt) =>
+      minInt + floor(random() * (maxInt - minInt)),
 
-  /**
-   * Returns random value from `-absoluteValue` up to (but not including) `absoluteValue`.
-   * @param absoluteValue
-   * @return A random value.
-   */
-  const fromAbsolute = absoluteValue =>
-    -absoluteValue + random() * 2 * absoluteValue;
+    /**
+     * Returns `n` or `-n` randomly.
+     * @param n Any number.
+     * @returns A random-signed value of `n`.
+     */
+    signed: n => (random() < 0.5 ? n : -n),
 
-  /**
-   * Similar to `Math.random()`, but remaps the result by `curve`.
-   * @param curve Function that takes a random value between [0, 1] and returns a remapped value.
-   * @return A random value.
-   */
-  const ratioCurved = curve => curve(random());
+    /**
+     * Removes and returns one element from `array` randomly.
+     * `array` is not expected to be empty.
+     * @param array
+     * @returns A random element.
+     */
+    removeFromArray: array =>
+      array.splice(floor(random() * array.length), 1)[0],
 
-  /**
-   * Similar to p5 `random()` with 1 number argument, but remaps the result by `curve`.
-   * @param curve Function that takes a random value between [0, 1] and returns a remapped value.
-   * @param magnitude
-   * @return A random value.
-   */
-  const valueCurved = (curve, magnitude) => curve(random()) * magnitude;
+    /**
+     * Returns `true` or `false` randomly.
+     * @param probability A number between 0 and 1.
+     * @returns `true` with the given `probability`.
+     */
+    bool: probability => random() < probability,
 
-  /**
-   * Similar to p5 `random()` with 2 number arguments, but remaps the result by `curve`.
-   * `start` should not be greater than `end`.
-   * @param curve Function that takes a random value between [0, 1] and returns a remapped value.
-   * @param start
-   * @param end
-   * @return A random value.
-   */
-  const betweenCurved = (curve, start, end) =>
-    start + curve(random()) * (end - start);
+    /**
+     * Returns a random value from `-absoluteValue` up to (but not including) `absoluteValue`.
+     * @param absoluteValue
+     * @returns A random value.
+     */
+    fromAbsolute: absoluteValue =>
+      -absoluteValue + random() * 2 * absoluteValue,
 
-  return Object.freeze({
-    angle,
-    integer,
-    integerBetween,
-    signed,
-    removeFromArray,
-    bool,
-    fromAbsolute,
-    ratioCurved,
-    valueCurved,
-    betweenCurved
-  });
-})();
+    /**
+     * Similar to `ratio()`, but remaps the result by `curve`.
+     * @param curve Any function that takes a random value between [0, 1] and returns a remapped value.
+     * @returns A random value.
+     */
+    ratioCurved: curve => curve(random()),
 
-// ---- Example ---------------------------------------------------------------
+    /**
+     * Similar to p5 `value()`, but remaps the result by `curve`.
+     * @param curve Any function that takes a random value between [0, 1] and returns a remapped value.
+     * @param magnitude
+     * @returns A random value.
+     */
+    valueCurved: (curve, magnitude) => curve(random()) * magnitude,
 
-// -- Constants ----
+    /**
+     * Similar to `between()`, but remaps the result by `curve`.
+     * `start` should not be greater than `end`.
+     * @param curve Any function that takes a random value between [0, 1] and returns a remapped value.
+     * @param start
+     * @param end
+     * @returns A random value.
+     */
+    betweenCurved: (curve, start, end) =>
+      start + curve(random()) * (end - start)
+  };
+};
+
+// ---- example ---------------------------------------------------------------
+
+// -- common ----
+
+const Random = createRandomFunctions();
 
 const numberLineLength = 0.6 * 640;
 const numberLineScale = numberLineLength / 4;
+const dataPointLivingDuration = 90;
+const dataPointLifeChangeRate = 1 / dataPointLivingDuration;
 
-// -- Function for drawing number line ----
+// -- function for drawing number line ----
 
 const numberLineHalfLength = numberLineLength / 2;
 const numberLineValues = [-2, -1, 0, 1, 2];
@@ -122,7 +143,7 @@ const drawNumberLine = () => {
   });
 };
 
-// -- Data point ----
+// -- data point ----
 
 const createDataPoint = value => {
   return {
@@ -133,23 +154,23 @@ const createDataPoint = value => {
 const drawDataPoint = dataPoint => {
   const { life } = dataPoint;
 
-  const alpha = life * 255;
+  const alpha = life * 176;
   fill(192, 0, 64, alpha);
 
   const x = numberLineScale * dataPoint.value;
-  const size = life * 15;
+  const size = life * 18;
   circle(x, 0, size);
 
-  dataPoint.life -= 0.02;
+  dataPoint.life -= dataPointLifeChangeRate;
   return dataPoint.life > 0; // true if alive
 };
 
-// -- Data block ----
+// -- data block ----
 
 const createDataBlock = (parameters, index) => {
-  const x = 0.03 * width;
+  const x = 0.05 * width;
   const y = 30 + index * 50;
-  const xOffset = 0.63 * width;
+  const xOffset = 0.6 * width;
 
   return {
     name: parameters.name,
@@ -168,6 +189,7 @@ const drawName = name => {
 };
 const drawDataPointsOf = block => {
   noStroke();
+  blendMode(MULTIPLY);
   block.dataPoints = block.dataPoints.filter(drawDataPoint);
 };
 const drawDataBlock = block => {
@@ -192,42 +214,44 @@ const addData = block => {
 const dataBlocks = [];
 
 const prepareDataBlocks = () => {
+  const pow5 = x => Math.pow(x, 5);
+
   const parameterList = [
     {
-      name: "random(1)",
-      randomFunction: () => random(1)
+      name: "ratio()",
+      randomFunction: () => Random.ratio(1)
     },
     {
-      name: "random(-1, 1)",
-      randomFunction: () => random(-1, 1)
+      name: "between(-1, 1)",
+      randomFunction: () => Random.between(-1, 1)
     },
     {
-      name: "Random.integer(3)",
+      name: "integer(3)",
       randomFunction: () => Random.integer(3)
     },
     {
-      name: "Random.integerBetween(-1, 2)",
+      name: "integerBetween(-1, 2)",
       randomFunction: () => Random.integerBetween(-1, 2)
     },
     {
-      name: "Random.signed(1)",
-      randomFunction: () => Random.signed(1)
+      name: "signed(0.5)",
+      randomFunction: () => Random.signed(0.5)
     },
     {
-      name: "Random.fromAbsolute(2)",
+      name: "fromAbsolute(2)",
       randomFunction: () => Random.fromAbsolute(2)
     },
     {
-      name: "Random.ratioCurved(sq)",
-      randomFunction: () => Random.ratioCurved(sq)
+      name: "ratioCurved(pow5)",
+      randomFunction: () => Random.ratioCurved(pow5)
     },
     {
-      name: "Random.valueCurved(sq, 2)",
-      randomFunction: () => Random.valueCurved(sq, 2)
+      name: "valueCurved(pow5, 2)",
+      randomFunction: () => Random.valueCurved(pow5, 2)
     },
     {
-      name: "Random.betweenCurved(sq,-1,1)",
-      randomFunction: () => Random.betweenCurved(sq, -1, 1)
+      name: "betweenCurved(pow5, -2, 2)",
+      randomFunction: () => Random.betweenCurved(pow5, -2, 2)
     }
   ];
 
@@ -235,17 +259,17 @@ const prepareDataBlocks = () => {
   dataBlocks.push(...parameterList.map(createDataBlock));
 };
 
-function setup() {
+setup = () => {
   createCanvas(640, 480);
   background(252);
   textAlign(CENTER);
 
   prepareDataBlocks();
-}
+};
 
-function draw() {
+draw = () => {
   background(248);
 
   if (frameCount % 5 === 0) dataBlocks.forEach(addData);
   dataBlocks.forEach(drawDataBlock);
-}
+};

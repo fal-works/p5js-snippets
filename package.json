@@ -3,9 +3,6 @@
   "description": "Collection of p5.js snippet codes.",
   "version": "0.1.0",
   "author": "FAL",
-  "dependencies": {
-    "p5": "^0.10.2"
-  },
   "devDependencies": {
     "eslint": "^6.7.1",
     "eslint-config-prettier": "^6.7.0",
@@ -13,6 +10,9 @@
     "prettier": "^1.19.1"
   },
   "license": "MIT",
+  "optionalDependencies": {
+    "p5": "^0.10.2"
+  },
   "private": true,
   "scripts": {}
 }

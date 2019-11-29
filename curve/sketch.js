@@ -1,7 +1,7 @@
 // ---- definition ------------------------------------------------------------
 
 /**
- * Similar as p5 `curveVertex()` but takes a vector as argument.
+ * similar to p5 `curveVertex()` but takes a vector as argument.
  * @param vector - Coordinates of the vertex. `vector.z` is optional (for WebGL mode).
  */
 const curveVertexFromVector = vector =>
@@ -13,11 +13,12 @@ const curveVertexFromVector = vector =>
  */
 const drawCurve = vertices => {
   const { length } = vertices;
-
   beginShape();
+
   curveVertexFromVector(vertices[0]);
-  vertices.forEach(curveVertexFromVector);
+  for (let i = 0; i < length; i += 1) curveVertexFromVector(vertices[i]);
   curveVertexFromVector(vertices[length - 1]);
+
   endShape();
 };
 
@@ -26,9 +27,12 @@ const drawCurve = vertices => {
  * @param vertices
  */
 const drawCurveClosed = vertices => {
+  const { length } = vertices;
   beginShape();
-  vertices.forEach(curveVertexFromVector);
+
+  for (let i = 0; i < length; i += 1) curveVertexFromVector(vertices[i]);
   for (let i = 0; i < 3; i += 1) curveVertexFromVector(vertices[i]);
+
   endShape();
 };
 
@@ -76,15 +80,15 @@ const drawNewCurve = parameter => {
 
 // -- main ----
 
-function setup() {
+setup = () => {
   createCanvas(640, 480);
   noFill();
   strokeWeight(3);
 
   drawNewCurve({ closed: false });
-}
+};
 
-function draw() {
+draw = () => {
   switch (frameCount % 120) {
     case 0:
       drawNewCurve({ close: false });
@@ -93,4 +97,4 @@ function draw() {
       drawNewCurve({ close: true });
       break;
   }
-}
+};

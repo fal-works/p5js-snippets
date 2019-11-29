@@ -25,10 +25,13 @@ const createTimer = parameters => {
 
 // ---- usage ----------------------------------------------------------------
 
+const printProgressRatio = ratio => console.log(`Progress ratio: ${ratio}`);
+
 const sampleTimer = createTimer({
   duration: 4,
-  onProgress: progressRatio => console.log(`Progress ratio: ${progressRatio}`)
+  onProgress: printProgressRatio
 });
+
 while (sampleTimer()) {
   // loops until false returns
 }
@@ -42,6 +45,8 @@ Progress ratio: 1
 */
 
 // ---- example ---------------------------------------------------------------
+
+// -- variable & functions ----
 
 let timers = [];
 
@@ -63,16 +68,25 @@ const createRandomTimer = () => {
   });
 };
 
-function setup() {
+/**
+ * Runs all elements of `timers` and returns a new array to run next time.
+ * @param timers - Array of timer functions.
+ * @returns Array of timer functions that are still running and not completed.
+ */
+const stepTimers = timers => timers.filter(timer => timer());
+
+// -- main ----
+
+setup = () => {
   createCanvas(640, 480);
   noFill();
   strokeWeight(2);
-}
+};
 
-function draw() {
+draw = () => {
   background(252, 252, 255);
 
   if (frameCount % 15 === 0) timers.push(createRandomTimer());
 
-  timers = timers.filter(timer => timer()); // timer is removed if it is completed (i.e. returns false).
-}
+  timers = stepTimers(timers);
+};
