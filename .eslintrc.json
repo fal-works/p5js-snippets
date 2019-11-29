@@ -79,7 +79,12 @@
         "HSB": "readonly",
         "TWO_PI": "readonly",
         "HALF_PI": "readonly",
-        "QUARTER_PI": "readonly"
+        "QUARTER_PI": "readonly",
+        "BLEND": "readonly",
+        "REPLACE": "readonly",
+        "ADD": "readonly",
+        "DIFFERENCE": "readonly",
+        "MULTIPLY": "readonly"
       },
       "parserOptions": {
         "sourceType": "script"
