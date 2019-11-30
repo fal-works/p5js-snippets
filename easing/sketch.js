@@ -14,8 +14,10 @@ const Ease = (() => {
   // -- functions for generating composite easing functions ----
 
   const concatenate = (easingA, easingB, thresholdRatio = 0.5) => {
+    const inverseThresholdRatio = 1 / thresholdRatio;
+
     return ratio => {
-      if (ratio < thresholdRatio) return easingA(ratio / thresholdRatio);
+      if (ratio < thresholdRatio) return easingA(inverseThresholdRatio * ratio);
       else {
         const ratioB = 1 - thresholdRatio;
         return easingB((ratio - thresholdRatio) / ratioB);
@@ -24,9 +26,11 @@ const Ease = (() => {
   };
 
   const integrate = (easingA, easingB, thresholdRatio = 0.5) => {
+    const inverseThresholdRatio = 1 / thresholdRatio;
+
     return ratio => {
       if (ratio < thresholdRatio)
-        return thresholdRatio * easingA(ratio / thresholdRatio);
+        return thresholdRatio * easingA(inverseThresholdRatio * ratio);
       else {
         const ratioB = 1 - thresholdRatio;
         return (
