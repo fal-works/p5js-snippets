@@ -58,6 +58,31 @@ const createRandomFunctions = (random = Math.random) => {
       minInt + floor(random() * (maxInt - minInt)),
 
     /**
+     * Returns a random value at intervals of `step` from `0` up to (but not including) `1`.
+     * @param step - E.g. if `0.25`, the result is either `0`, `0.25`, `0.5` or `0.75`.
+     * @returns A random value.
+     */
+    discreteRatio: step => floor(random() / step) * step,
+
+    /**
+     * Returns a random value at intervals of `step` from `0` up to (but not including) `max`.
+     * @param step
+     * @param max
+     * @returns A random value.
+     */
+    discreteValue: (step, max) => floor(random() * (max / step)) * step,
+
+    /**
+     * Returns a random value at intervals of `step` from `min` up to (but not including) `max`.
+     * @param step
+     * @param min
+     * @param max
+     * @returns A random value.
+     */
+    discreteBetween: (step, min, max) =>
+      min + floor(random() * ((max - min) / step)) * step,
+
+    /**
      * Returns `n` or `-n` randomly.
      * @param n Any number.
      * @returns A random-signed value of `n`.
