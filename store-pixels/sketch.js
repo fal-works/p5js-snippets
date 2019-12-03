@@ -20,7 +20,7 @@ const storePixels = (renderer = window) => {
 
 let restorePixels;
 
-setup = () => {
+function setup() {
   createCanvas(640, 480);
 
   rectMode(CENTER);
@@ -39,10 +39,10 @@ setup = () => {
   stroke(0, 160);
   noFill();
   strokeWeight(10);
-};
+}
 
-draw = () => {
+function draw() {
   restorePixels();
 
   square(width / 2, height / 2, 300 + 100 * Math.sin(frameCount * 0.1));
-};
+}

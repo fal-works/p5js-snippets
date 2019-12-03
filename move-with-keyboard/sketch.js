@@ -121,7 +121,7 @@ const drawMe = () =>
 
 // -- main ----
 
-setup = () => {
+function setup() {
   createCanvas(640, 480);
 
   initializeMoveKeyStatus();
@@ -129,16 +129,16 @@ setup = () => {
 
   noStroke();
   fill(64);
-};
+}
 
-draw = () => {
+function draw() {
   background(248);
 
   const velocity = moveDirectionVector.copy().mult(speed);
   moveMe(velocity);
 
   drawMe();
-};
+}
 
 function keyPressed() {
   detectMoveKeysPressed();

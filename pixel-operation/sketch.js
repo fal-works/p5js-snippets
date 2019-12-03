@@ -251,13 +251,13 @@ const drawGradationTexture = () => {
 
 // -- main ----
 
-setup = () => {
+function setup() {
   createCanvas(640, 480);
 
   drawRandomTexture();
-};
+}
 
-draw = () => {
+function draw() {
   switch (frameCount % 180) {
     case 0:
       drawRandomTexture();
@@ -269,4 +269,4 @@ draw = () => {
       drawGradationTexture();
       break;
   }
-};
+}

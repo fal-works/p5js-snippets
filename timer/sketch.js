@@ -77,16 +77,16 @@ const stepTimers = timers => timers.filter(timer => timer());
 
 // -- main ----
 
-setup = () => {
+function setup() {
   createCanvas(640, 480);
   noFill();
   strokeWeight(2);
-};
+}
 
-draw = () => {
+function draw() {
   background(252, 252, 255);
 
   if (frameCount % 15 === 0) timers.push(createRandomTimer());
 
   timers = stepTimers(timers);
-};
+}

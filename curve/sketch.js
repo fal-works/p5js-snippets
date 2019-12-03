@@ -80,15 +80,15 @@ const drawNewCurve = parameter => {
 
 // -- main ----
 
-setup = () => {
+function setup() {
   createCanvas(640, 480);
   noFill();
   strokeWeight(3);
 
   drawNewCurve({ closed: false });
-};
+}
 
-draw = () => {
+function draw() {
   switch (frameCount % 120) {
     case 0:
       drawNewCurve({ close: false });
@@ -97,4 +97,4 @@ draw = () => {
       drawNewCurve({ close: true });
       break;
   }
-};
+}

@@ -363,11 +363,11 @@ const graphBlocks = gridData
   )
   .reduce((flatArray, subArray) => flatArray.concat(subArray), []);
 
-setup = () => {
+function setup() {
   createCanvas(640, 640);
-};
+}
 
-draw = () => {
+function draw() {
   background(248);
   graphBlocks.forEach(drawBlock => drawBlock());
-};
+}

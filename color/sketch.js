@@ -63,10 +63,10 @@ const reverseColor = color =>
 
 // -- main ----
 
-setup = () => {
+function setup() {
   createCanvas(640, 480);
   noFill();
   strokeWeight(3);
-};
+}
 
-draw = () => {};
+function draw() {}

@@ -134,13 +134,13 @@ const drawNewNetwork = () => {
   drawPoints(magentaPoints);
 };
 
-setup = () => {
+function setup() {
   createCanvas(640, 480);
 
   drawNewNetwork();
-};
+}
 
-draw = () => {
+function draw() {
   if (frameCount % 60) return;
   drawNewNetwork();
-};
+}

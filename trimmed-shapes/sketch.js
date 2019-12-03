@@ -345,20 +345,20 @@ const calculateTrimmingRatios = frameCount => {
 
 // -- main ----
 
-setup = () => {
+function setup() {
   createCanvas(640, 480);
   stroke(96, 192, 255);
   noFill();
   strokeWeight(2);
 
   reset();
-};
+}
 
-draw = () => {
+function draw() {
   background(252, 253, 255);
 
   if (frameCount % resetIntervalDuration === 0) reset();
 
   const { startRatio, endRatio } = calculateTrimmingRatios(frameCount);
   for (const shape of shapes) shape(startRatio, endRatio);
-};
+}
