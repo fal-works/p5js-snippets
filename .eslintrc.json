@@ -17,6 +17,7 @@
         "p5": "readonly",
         "createCanvas": "readonly",
         "save": "readonly",
+        "noLoop": "readonly",
         "image": "readonly",
         "frameCount": "readonly",
         "frameRate": "readonly",
@@ -84,9 +85,11 @@
         "ADD": "readonly",
         "DIFFERENCE": "readonly",
         "MULTIPLY": "readonly",
+        "BURN": "readonly",
         "OPEN": "readonly",
         "CHORD": "readonly",
-        "PIE": "readonly"
+        "PIE": "readonly",
+        "createRadio": "readonly"
       },
       "parserOptions": {
         "sourceType": "script"
