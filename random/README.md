@@ -1,8 +1,8 @@
-# Random
+## Random
 
-## Examples
+### Examples
 
-### 1
+#### No. 1
 
 [ex1]: ./example/index.html
 
