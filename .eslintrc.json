@@ -15,9 +15,8 @@
       "files": ["./**/*.js"],
       "globals": {
         "p5": "readonly",
-        "setup": "writable",
-        "draw": "writable",
         "createCanvas": "readonly",
+        "save": "readonly",
         "image": "readonly",
         "frameCount": "readonly",
         "frameRate": "readonly",
@@ -84,7 +83,10 @@
         "REPLACE": "readonly",
         "ADD": "readonly",
         "DIFFERENCE": "readonly",
-        "MULTIPLY": "readonly"
+        "MULTIPLY": "readonly",
+        "OPEN": "readonly",
+        "CHORD": "readonly",
+        "PIE": "readonly"
       },
       "parserOptions": {
         "sourceType": "script"
