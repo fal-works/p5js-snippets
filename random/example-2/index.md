@@ -1,5 +1,5 @@
-## [Random](../) > Example no. 1
+## [Random](../) > Example no. 2
 
-Click to save image.
+Type "g" key to save image.
 
-<iframe src="./sketch.html" width="640px" height="480px" frameborder="0"></iframe>
+<iframe src="./sketch.html" width="640px" height="640px" frameborder="0"></iframe>
