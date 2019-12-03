@@ -1,6 +1,8 @@
 "use strict";
 
-const saveCanvasPNG = () => save("image.png");
+const saveCanvasPNG = () => {
+  if (key === "g") save("image.png");
+};
 const currentKeyTyped = window.keyTyped;
 window.keyTyped = currentKeyTyped
   ? () => {
