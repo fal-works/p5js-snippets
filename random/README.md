@@ -1,8 +1,6 @@
 ## Random
 
-### Examples
-
-#### No. 1
+### Example No. 1
 
 [ex1]: ./example/
 
