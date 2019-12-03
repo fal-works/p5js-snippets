@@ -2,7 +2,7 @@
 
 ### Example No. 1
 
-[ex1]: ./example/
+[ex1]: ./example-1/
 
 [Click to open & run][ex1]
 
