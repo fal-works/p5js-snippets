@@ -4,7 +4,7 @@
 
 #### No. 1
 
-[ex1]: ./example/index.html
+[ex1]: ./example/
 
 [Click to open][ex1]
 
