@@ -1,4 +1,4 @@
-## [Random](../) - Example no. 1
+## [Random](../) > Example no. 1
 
 Click to save image.
 
