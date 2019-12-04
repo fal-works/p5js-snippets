@@ -14,4 +14,4 @@
 
 [Click to open & run][ex2]
 
-<!-- [![screen-shot](./example-2/screen-shot.png)][ex1] -->
+[![screen-shot](./example-2/screen-shot.png)][ex2]
