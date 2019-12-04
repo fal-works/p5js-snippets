@@ -161,6 +161,23 @@ const createRandomFunctions = (random = Math.random) => {
        * @returns A random value.
        */
       between: (curve, start, end) => start + curve(random()) * (end - start)
+    },
+
+    /** Collection of functions that return random 2-dimensional `p5.Vector` instances. */
+    P5Vector2D: {
+      /**
+       * Returns a unit vector with a random angle.
+       * This is just an alias of `p5.Vector.random2D`.
+       * @returns A random 2D `p5.Vector` instance.
+       */
+      unit: p5.Vector.random2D,
+
+      /**
+       * Returns a 2D `p5.Vector` instance with `length` and a random angle.
+       * @param length
+       * @returns A random 2D `p5.Vector` instance.
+       */
+      withLength: length => p5.Vector.random2D().mult(length)
     }
   };
 };
