@@ -56,12 +56,12 @@ const createRandomFunctions = (random = Math.random) => {
     bool: probability => random() < probability,
 
     /**
-     * Returns a random value from `-absoluteValue` up to (but not including) `absoluteValue`.
-     * @param absoluteValue
+     * Returns a positive or negative value randomly with a magnitude from `0` up to (but not including) `maxAbsoluteValue`.
+     * @param maxAbsoluteValue
      * @returns A random value.
      */
-    fromAbsolute: absoluteValue =>
-      -absoluteValue + random() * 2 * absoluteValue,
+    fromAbsolute: maxAbsoluteValue =>
+      (random() < 0.5 ? 1 : -1) * random() * maxAbsoluteValue,
 
     /** Collection of functions that return random integer values. */
     Integer: {
@@ -80,7 +80,16 @@ const createRandomFunctions = (random = Math.random) => {
        * @param maxInt
        * @returns A random integer value.
        */
-      between: (minInt, maxInt) => minInt + floor(random() * (maxInt - minInt))
+      between: (minInt, maxInt) => minInt + floor(random() * (maxInt - minInt)),
+
+      /**
+       * Returns a positive or negative integer randomly
+       * with a magnitude from `0` up to (but not including) `maxAbsoluteValue`.
+       * @param maxAbsoluteValue
+       * @returns A random value.
+       */
+      fromAbsolute: maxAbsoluteValue =>
+        (random() < 0.5 ? 1 : -1) * floor(random() * maxAbsoluteValue)
     },
 
     /** Collection of functions that return random discrete values. */
@@ -109,6 +118,18 @@ const createRandomFunctions = (random = Math.random) => {
        */
       between: (step, min, max) =>
         min + floor(random() * ((max - min) / step)) * step,
+
+      /**
+       * Returns a positive or negative integer randomly at intervals of `step`
+       * with a magnitude from `0` up to (but not including) `maxAbsoluteValue`.
+       * @param step
+       * @param maxAbsoluteValue
+       * @returns A random value.
+       */
+      fromAbsolute: (step, maxAbsoluteValue) =>
+        (random() < 0.5 ? 1 : -1) *
+        floor(random() * (maxAbsoluteValue / step)) *
+        step,
 
       /**
        * Returns a random value at intervals of `step` from `0` to (but not including) `2 * PI`.
