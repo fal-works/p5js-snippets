@@ -40,13 +40,11 @@ const createRandomFunctions = (random = Math.random) => {
     angle: () => random() * TWO_PI,
 
     /**
-     * Returns `n` or `-n` randomly.
+     * Returns `1` or `-1` randomly.
      * @param positiveProbability A number between 0 and 1 for the probability of a positive value being returned.
-     * @param n Any number.
-     * @returns A random-signed value of `n`.
+     * @returns Either `1` or `-1`.
      */
-    signed: (positiveProbability, n) =>
-      random() < positiveProbability ? n : -n,
+    sign: positiveProbability => (random() < positiveProbability ? 1 : -1),
 
     /**
      * Returns `true` or `false` randomly.
