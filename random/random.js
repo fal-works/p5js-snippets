@@ -8,7 +8,8 @@
  * @returns Functions that return random values.
  */
 const createRandomFunctions = (random = Math.random) => {
-  const { floor } = Math;
+  const { floor, PI } = Math;
+  const TWO_PI = 2 * PI;
 
   return {
     /**
@@ -60,6 +61,12 @@ const createRandomFunctions = (random = Math.random) => {
      */
     signed: maxMagnitude => (random() < 0.5 ? 1 : -1) * random() * maxMagnitude,
 
+    /**
+     * Returns a positive or negative value randomly with a magnitude from `0` up to (but not including) `PI`.
+     * @returns A random radians value.
+     */
+    signedAngle: () => (random() < 0.5 ? 1 : -1) * random() * PI,
+
     /** Collection of functions that return random integer values. */
     Integer: {
       /**
@@ -83,7 +90,7 @@ const createRandomFunctions = (random = Math.random) => {
        * Returns a positive or negative integer randomly
        * with a magnitude from `0` up to (but not including) `maxMagnitude`.
        * @param maxMagnitude
-       * @returns A random value.
+       * @returns A random signed value.
        */
       signed: maxMagnitude =>
         (random() < 0.5 ? 1 : -1) * floor(random() * maxMagnitude)
@@ -117,11 +124,11 @@ const createRandomFunctions = (random = Math.random) => {
         min + floor(random() * ((max - min) / step)) * step,
 
       /**
-       * Returns a positive or negative integer randomly at intervals of `step`
+       * Returns a positive or negative value randomly at intervals of `step`
        * with a magnitude from `0` up to (but not including) `maxMagnitude`.
        * @param step
        * @param maxMagnitude
-       * @returns A random value.
+       * @returns A random signed value.
        */
       signed: (step, maxMagnitude) =>
         (random() < 0.5 ? 1 : -1) *
@@ -133,7 +140,16 @@ const createRandomFunctions = (random = Math.random) => {
        * @param step - Interval angle.
        * @returns A random radians value.
        */
-      angle: step => floor(random() * (TWO_PI / step)) * step
+      angle: step => floor(random() * (TWO_PI / step)) * step,
+
+      /**
+       * Returns a positive or negative value randomly at intervals of `step`
+       * with a magnitude from `0` up to (but not including) `PI`.
+       * @param step - Interval angle.
+       * @returns A random signed radians value.
+       */
+      signedAngle: step =>
+        (random() < 0.5 ? 1 : -1) * floor(random() * (PI / step)) * step
     },
 
     /** Collection of functions that return random elements from an array. */
@@ -158,14 +174,14 @@ const createRandomFunctions = (random = Math.random) => {
     /** Collection of functions that return random values. */
     Curved: {
       /**
-       * Similar to `ratio()`, but remaps the result by `curve`.
+       * Similar to the normal `ratio()`, but remaps the result by `curve`.
        * @param curve Any function that takes a random value between [0, 1) and returns a remapped value.
        * @returns A random value.
        */
       ratio: curve => curve(random()),
 
       /**
-       * Similar to `value()`, but remaps the result by `curve`.
+       * Similar to the normal `value()`, but remaps the result by `curve`.
        * @param curve Any function that takes a random value between [0, 1) and returns a remapped value.
        * @param magnitude
        * @returns A random value.
@@ -173,7 +189,7 @@ const createRandomFunctions = (random = Math.random) => {
       value: (curve, magnitude) => curve(random()) * magnitude,
 
       /**
-       * Similar to `between()`, but remaps the result by `curve`.
+       * Similar to the normal `between()`, but remaps the result by `curve`.
        * `start` should not be greater than `end`.
        * @param curve Any function that takes a random value between [0, 1) and returns a remapped value.
        * @param start
@@ -183,11 +199,28 @@ const createRandomFunctions = (random = Math.random) => {
       between: (curve, start, end) => start + curve(random()) * (end - start),
 
       /**
-       * Similar to `angle()`, but remaps the result by `curve`.
+       * Similar to the normal `angle()`, but remaps the result by `curve`.
        * @param curve Any function that takes a random value between [0, 1) and returns a remapped value.
        * @returns A random radians value.
        */
-      angle: curve => curve(random()) * TWO_PI
+      angle: curve => curve(random()) * TWO_PI,
+
+      /**
+       * Similar to the normal `signed()`, but remaps the result by `curve`.
+       * @param curve Any function that takes a random value between [0, 1) and returns a remapped value.
+       * @param magnitude
+       * @returns A random signed value.
+       */
+      signed: (curve, magnitude) =>
+        (random() < 0.5 ? 1 : -1) * curve(random()) * magnitude,
+
+      /**
+       * Similar to the normal `signedAngle()`, but remaps the result by `curve`.
+       * @param curve Any function that takes a random value between [0, 1) and returns a remapped value.
+       * @param magnitude
+       * @returns A random signed radians value.
+       */
+      signedAngle: curve => (random() < 0.5 ? 1 : -1) * curve(random()) * PI
     },
 
     /** Collection of functions that return random 2-dimensional `p5.Vector` instances. */
