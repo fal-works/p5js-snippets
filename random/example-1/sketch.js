@@ -125,8 +125,8 @@ const prepareDataBlocks = () => {
       randomFunction: () => Random.sign(0.5) * 0.8
     },
     {
-      name: "fromAbsolute(2)",
-      randomFunction: () => Random.fromAbsolute(2)
+      name: "signed(2)",
+      randomFunction: () => Random.signed(2)
     },
     {
       name: "Curved.ratio(pow5)",

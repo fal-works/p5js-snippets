@@ -54,12 +54,11 @@ const createRandomFunctions = (random = Math.random) => {
     bool: probability => random() < probability,
 
     /**
-     * Returns a positive or negative value randomly with a magnitude from `0` up to (but not including) `maxAbsoluteValue`.
-     * @param maxAbsoluteValue
+     * Returns a positive or negative value randomly with a magnitude from `0` up to (but not including) `maxMagnitude`.
+     * @param maxMagnitude
      * @returns A random value.
      */
-    fromAbsolute: maxAbsoluteValue =>
-      (random() < 0.5 ? 1 : -1) * random() * maxAbsoluteValue,
+    signed: maxMagnitude => (random() < 0.5 ? 1 : -1) * random() * maxMagnitude,
 
     /** Collection of functions that return random integer values. */
     Integer: {
@@ -82,12 +81,12 @@ const createRandomFunctions = (random = Math.random) => {
 
       /**
        * Returns a positive or negative integer randomly
-       * with a magnitude from `0` up to (but not including) `maxAbsoluteValue`.
-       * @param maxAbsoluteValue
+       * with a magnitude from `0` up to (but not including) `maxMagnitude`.
+       * @param maxMagnitude
        * @returns A random value.
        */
-      fromAbsolute: maxAbsoluteValue =>
-        (random() < 0.5 ? 1 : -1) * floor(random() * maxAbsoluteValue)
+      signed: maxMagnitude =>
+        (random() < 0.5 ? 1 : -1) * floor(random() * maxMagnitude)
     },
 
     /** Collection of functions that return random discrete values. */
@@ -119,14 +118,14 @@ const createRandomFunctions = (random = Math.random) => {
 
       /**
        * Returns a positive or negative integer randomly at intervals of `step`
-       * with a magnitude from `0` up to (but not including) `maxAbsoluteValue`.
+       * with a magnitude from `0` up to (but not including) `maxMagnitude`.
        * @param step
-       * @param maxAbsoluteValue
+       * @param maxMagnitude
        * @returns A random value.
        */
-      fromAbsolute: (step, maxAbsoluteValue) =>
+      signed: (step, maxMagnitude) =>
         (random() < 0.5 ? 1 : -1) *
-        floor(random() * (maxAbsoluteValue / step)) *
+        floor(random() * (maxMagnitude / step)) *
         step,
 
       /**
