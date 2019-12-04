@@ -106,7 +106,14 @@ const createRandomFunctions = (random = Math.random) => {
        * @returns A random value.
        */
       between: (step, min, max) =>
-        min + floor(random() * ((max - min) / step)) * step
+        min + floor(random() * ((max - min) / step)) * step,
+
+      /**
+       * Returns a random value at intervals of `step` from `0` to (but not including) `2 * PI`.
+       * @param step - Interval angle.
+       * @returns A random radians value.
+       */
+      angle: step => floor(random() * (TWO_PI / step)) * step
     },
 
     /** Collection of functions that return random elements from an array. */
