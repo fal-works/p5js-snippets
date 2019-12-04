@@ -3,8 +3,6 @@
 
 "use strict";
 
-// ---- example ---------------------------------------------------------------
-
 // -- common ----
 
 const Random = createRandomFunctions();
@@ -22,43 +20,47 @@ const getAngleRange = (directionAngle, centralAngle) => {
   };
 };
 
-//TODO: use Map
-const randomModes = {
-  default: {
-    sizeFactor: Random.ratio,
-    angles: () => ({
-      start: Random.angle(),
-      end: Random.angle()
-    }),
-    repetition: 16
-  },
-  discrete: {
-    sizeFactor: () => Random.discreteRatio(0.1),
-    angles: () => ({
-      start: Random.discreteValue(QUARTER_PI, TWO_PI),
-      end: Random.discreteValue(QUARTER_PI, TWO_PI)
-    }),
-    repetition: 16
-  },
-  fan: {
-    sizeFactor: Random.ratio,
-    angles: () => {
-      const directionAngle = Random.discreteValue(HALF_PI, TWO_PI);
-      const centralAngle = Random.value(HALF_PI);
-      return getAngleRange(directionAngle, centralAngle);
-    },
-    repetition: 32
-  },
-  curved: {
-    sizeFactor: () => Random.ratioCurved(pow2),
-    angles: () => {
-      const directionAngle = Random.angle();
-      const centralAngle = Random.valueCurved(pow4, TWO_PI);
-      return getAngleRange(directionAngle, centralAngle);
-    },
-    repetition: 32
-  }
+// -- modes ----
+
+const defaultRandomMode = {
+  sizeFactor: Random.ratio,
+  angles: () => ({
+    start: Random.angle(),
+    end: Random.angle()
+  }),
+  repetition: 16
 };
+
+const randomModes = new Map();
+randomModes.set("default", defaultRandomMode);
+randomModes.set("discrete", {
+  sizeFactor: () => Random.discreteRatio(0.1),
+  angles: () => ({
+    start: Random.discreteValue(QUARTER_PI, TWO_PI),
+    end: Random.discreteValue(QUARTER_PI, TWO_PI)
+  }),
+  repetition: 16
+});
+randomModes.set("fan", {
+  sizeFactor: Random.ratio,
+  angles: () => {
+    const directionAngle = Random.discreteValue(HALF_PI, TWO_PI);
+    const centralAngle = Random.value(HALF_PI);
+    return getAngleRange(directionAngle, centralAngle);
+  },
+  repetition: 32
+});
+randomModes.set("curved", {
+  sizeFactor: () => Random.ratioCurved(pow2),
+  angles: () => {
+    const directionAngle = Random.angle();
+    const centralAngle = Random.valueCurved(pow4, TWO_PI);
+    return getAngleRange(directionAngle, centralAngle);
+  },
+  repetition: 32
+});
+
+// -- drawing functions ----
 
 const drawRandomPie = randomMode => {
   const diameter = 100 + randomMode.sizeFactor() * 460;
@@ -74,22 +76,7 @@ const drawObject = () => {
   fill(random(360), 0.3, 0.65);
   translate(width / 2, height / 2);
 
-  let mode;
-
-  switch (radioButton.value()) {
-    default:
-      mode = randomModes.default;
-      break;
-    case "discrete":
-      mode = randomModes.discrete;
-      break;
-    case "fan":
-      mode = randomModes.fan;
-      break;
-    case "curved":
-      mode = randomModes.curved;
-      break;
-  }
+  const mode = randomModes.get(radioButton.value()) || defaultRandomMode;
 
   for (let i = 0, len = mode.repetition; i < len; i += 1) drawRandomPie(mode);
 
@@ -101,16 +88,15 @@ const drawAlphaBackground = () => {
   rect(0, 0, width, height);
 };
 
+// -- main ----
+
 function setup() {
   createCanvas(640, 640);
   noStroke();
   colorMode(HSB, 360, 1, 1, 1);
 
   radioButton = createRadio();
-  radioButton.option("default");
-  radioButton.option("discrete");
-  radioButton.option("fan");
-  radioButton.option("curved");
+  for (const key of randomModes.keys()) radioButton.option(key);
   radioButton.position(20, 20);
   radioButton.value("default");
 
@@ -120,12 +106,6 @@ function setup() {
 function draw() {
   const count = frameCount % 120;
 
-  if (count === 0) {
-    drawObject();
-    return;
-  }
-
-  if (count > 75) {
-    drawAlphaBackground();
-  }
+  if (count === 0) drawObject();
+  else if (count > 75) drawAlphaBackground();
 }
