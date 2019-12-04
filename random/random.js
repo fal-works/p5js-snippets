@@ -41,11 +41,11 @@ const createRandomFunctions = (random = Math.random) => {
 
     /**
      * Returns `n` or `-n` randomly.
-     * @param n Any number.
      * @param positiveProbability A number between 0 and 1 for the probability of a positive value being returned.
+     * @param n Any number.
      * @returns A random-signed value of `n`.
      */
-    signed: (n, positiveProbability) =>
+    signed: (positiveProbability, n) =>
       random() < positiveProbability ? n : -n,
 
     /**

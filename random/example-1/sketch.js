@@ -121,8 +121,8 @@ const prepareDataBlocks = () => {
       randomFunction: () => Random.Integer.between(-1, 2)
     },
     {
-      name: "signed(0.8, 0.5)",
-      randomFunction: () => Random.signed(0.8, 0.5)
+      name: "signed(0.5, 0.8)",
+      randomFunction: () => Random.signed(0.5, 0.8)
     },
     {
       name: "fromAbsolute(2)",
