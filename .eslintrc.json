@@ -17,6 +17,7 @@
         "p5": "readonly",
         "createCanvas": "readonly",
         "save": "readonly",
+        "loop": "readonly",
         "noLoop": "readonly",
         "image": "readonly",
         "frameCount": "readonly",
