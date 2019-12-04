@@ -36,15 +36,15 @@ randomModes.set("default", defaultRandomMode);
 randomModes.set("discrete", {
   sizeFactor: () => Random.Discrete.ratio(0.1),
   angles: () => ({
-    start: Random.Discrete.value(QUARTER_PI, TWO_PI),
-    end: Random.Discrete.value(QUARTER_PI, TWO_PI)
+    start: Random.Discrete.angle(QUARTER_PI),
+    end: Random.Discrete.angle(QUARTER_PI)
   }),
   repetition: 16
 });
 randomModes.set("fan", {
   sizeFactor: Random.ratio,
   angles: () => {
-    const directionAngle = Random.Discrete.value(HALF_PI, TWO_PI);
+    const directionAngle = Random.Discrete.angle(HALF_PI);
     const centralAngle = Random.value(HALF_PI);
     return getAngleRange(directionAngle, centralAngle);
   },
