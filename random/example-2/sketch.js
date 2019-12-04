@@ -34,27 +34,27 @@ const defaultRandomMode = {
 const randomModes = new Map();
 randomModes.set("default", defaultRandomMode);
 randomModes.set("discrete", {
-  sizeFactor: () => Random.discreteRatio(0.1),
+  sizeFactor: () => Random.Discrete.ratio(0.1),
   angles: () => ({
-    start: Random.discreteValue(QUARTER_PI, TWO_PI),
-    end: Random.discreteValue(QUARTER_PI, TWO_PI)
+    start: Random.Discrete.value(QUARTER_PI, TWO_PI),
+    end: Random.Discrete.value(QUARTER_PI, TWO_PI)
   }),
   repetition: 16
 });
 randomModes.set("fan", {
   sizeFactor: Random.ratio,
   angles: () => {
-    const directionAngle = Random.discreteValue(HALF_PI, TWO_PI);
+    const directionAngle = Random.Discrete.value(HALF_PI, TWO_PI);
     const centralAngle = Random.value(HALF_PI);
     return getAngleRange(directionAngle, centralAngle);
   },
   repetition: 32
 });
 randomModes.set("curved", {
-  sizeFactor: () => Random.ratioCurved(pow2),
+  sizeFactor: () => Random.Curved.ratio(pow2),
   angles: () => {
     const directionAngle = Random.angle();
-    const centralAngle = Random.valueCurved(pow4, TWO_PI);
+    const centralAngle = Random.Curved.value(pow4, TWO_PI);
     return getAngleRange(directionAngle, centralAngle);
   },
   repetition: 32

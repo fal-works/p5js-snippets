@@ -113,12 +113,12 @@ const prepareDataBlocks = () => {
       randomFunction: () => Random.between(-1, 1)
     },
     {
-      name: "integer(3)",
-      randomFunction: () => Random.integer(3)
+      name: "Integer.value(3)",
+      randomFunction: () => Random.Integer.value(3)
     },
     {
-      name: "integerBetween(-1, 2)",
-      randomFunction: () => Random.integerBetween(-1, 2)
+      name: "Integer.between(-1, 2)",
+      randomFunction: () => Random.Integer.between(-1, 2)
     },
     {
       name: "signed(0.5)",
@@ -129,16 +129,16 @@ const prepareDataBlocks = () => {
       randomFunction: () => Random.fromAbsolute(2)
     },
     {
-      name: "ratioCurved(pow5)",
-      randomFunction: () => Random.ratioCurved(pow5)
+      name: "Curved.ratio(pow5)",
+      randomFunction: () => Random.Curved.ratio(pow5)
     },
     {
-      name: "valueCurved(pow5, 2)",
-      randomFunction: () => Random.valueCurved(pow5, 2)
+      name: "Curved.value(pow5, 2)",
+      randomFunction: () => Random.Curved.value(pow5, 2)
     },
     {
-      name: "betweenCurved(pow5, -2, 2)",
-      randomFunction: () => Random.betweenCurved(pow5, -2, 2)
+      name: "Curved.between(pow5, -2, 2)",
+      randomFunction: () => Random.Curved.between(pow5, -2, 2)
     }
   ];
 
