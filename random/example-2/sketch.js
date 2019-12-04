@@ -54,7 +54,7 @@ randomModes.set("curved", {
   sizeFactor: () => Random.Curved.ratio(pow2),
   angles: () => {
     const directionAngle = Random.angle();
-    const centralAngle = Random.Curved.value(pow4, TWO_PI);
+    const centralAngle = Random.Curved.angle(pow4);
     return getAngleRange(directionAngle, centralAngle);
   },
   repetition: 32

@@ -162,7 +162,14 @@ const createRandomFunctions = (random = Math.random) => {
        * @param end
        * @returns A random value.
        */
-      between: (curve, start, end) => start + curve(random()) * (end - start)
+      between: (curve, start, end) => start + curve(random()) * (end - start),
+
+      /**
+       * Similar to `angle()`, but remaps the result by `curve`.
+       * @param curve Any function that takes a random value between [0, 1) and returns a remapped value.
+       * @returns A random radians value.
+       */
+      angle: curve => curve(random()) * TWO_PI
     },
 
     /** Collection of functions that return random 2-dimensional `p5.Vector` instances. */
