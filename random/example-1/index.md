@@ -1,6 +1,6 @@
 ## [Random](../) > Example no. 1
 
-Type "p" to pause/resume.
+Type "p" key to pause/resume.
 
 Type "g" key to save image.
 
