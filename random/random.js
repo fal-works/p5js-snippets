@@ -1,10 +1,16 @@
-// ---- definition ------------------------------------------------------------
-
 "use strict";
 
 /**
  * Creates a collection of functions that return random values.
- * @param random - A function that returns a random value from `0` to (but not including) `1`. Defaults fo `Math.random`.
+ *
+ * @example
+ * const Random = createRandomFunctions();
+ * // Now you can use each function in `Random`.
+ * const myValue = Random.value(10);
+ * const myInt = Random.Integer.between(10, 20);
+ *
+ * @param random - A function that returns a random value from `0` up to (but not including) `1`.
+ *   Defaults fo `Math.random`.
  * @returns Functions that return random values.
  */
 const createRandomFunctions = (random = Math.random) => {
