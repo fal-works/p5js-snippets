@@ -148,8 +148,6 @@ const prepareDataBlocks = () => {
 
 function setup() {
   createCanvas(640, 480);
-  background(252);
-  textAlign(CENTER);
 
   prepareDataBlocks();
 }
